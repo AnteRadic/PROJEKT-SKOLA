@@ -198,7 +198,7 @@
             // 
             this.textBox4.Location = new System.Drawing.Point(116, 354);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
+            this.textBox4.Size = new System.Drawing.Size(138, 20);
             this.textBox4.TabIndex = 16;
             // 
             // openFileDialog1
@@ -207,15 +207,15 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(469, 27);
+            this.pictureBox1.Location = new System.Drawing.Point(392, 27);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(261, 132);
+            this.pictureBox1.Size = new System.Drawing.Size(338, 231);
             this.pictureBox1.TabIndex = 17;
             this.pictureBox1.TabStop = false;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(614, 334);
+            this.button1.Location = new System.Drawing.Point(588, 334);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(142, 59);
             this.button1.TabIndex = 18;
