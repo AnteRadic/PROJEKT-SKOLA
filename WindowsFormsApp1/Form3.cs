@@ -12,42 +12,33 @@ namespace WindowsFormsApp1
 {
     public partial class Form3 : Form
     {
-        
+        // Example data structure for animals
         private class Animal
         {
-            public string Name { get; set; }
-            public string ImagePath { get; set; }
-            public override string ToString() => Name;
+            public string Ime { get; set; }
+            public Image Slika { get; set; }
+            public override string ToString() => Ime;
         }
 
-        private List<Animal> animals = new List<Animal>
-        {
-            new Animal { Name = "Mau,", ImagePath = "C:\\slike\\rex.jpg" },
-            new Animal { Name = "Maza", ImagePath = "C:\\slike\\maza.jpg" }
-           
-        };
+        private List<Animal> animals = new List<Animal>();
 
         public Form3()
         {
             InitializeComponent();
-            listBox1.SelectedIndexChanged += ListBox1_SelectedIndexChanged;
-            LoadAnimals();
-        }
 
-        private void LoadAnimals()
-        {
-            listBox1.Items.Clear();
-            foreach (var animal in animals)
-            {
-                listBox1.Items.Add(animal);
-            }
+            // Example data - replace with your actual data source
+            animals.Add(new Animal { Ime = "Maza", Slika = Properties.Resources.maza }); 
+            animals.Add(new Animal { Ime = "Mau", Slika = Properties.Resources.mau });   
+
+            listBox1.DataSource = animals;
+            listBox1.SelectedIndexChanged += ListBox1_SelectedIndexChanged;
         }
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem is Animal selectedAnimal)
             {
-                pictureBox1.ImageLocation = selectedAnimal.ImagePath;
+                pictureBox1.Image = selectedAnimal.Slika;
             }
             else
             {

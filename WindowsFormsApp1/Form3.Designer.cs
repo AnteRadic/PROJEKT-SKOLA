@@ -58,6 +58,7 @@
             this.Controls.Add(this.listBox1);
             this.Name = "Form3";
             this.Text = " ";
+            this.Load += new System.EventHandler(this.Form3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
