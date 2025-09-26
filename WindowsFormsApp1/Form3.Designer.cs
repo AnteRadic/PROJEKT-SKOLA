@@ -36,18 +36,20 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(281, 266);
+            this.listBox1.Location = new System.Drawing.Point(281, 344);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(264, 186);
+            this.listBox1.Size = new System.Drawing.Size(264, 108);
             this.listBox1.TabIndex = 0;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(208, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(203, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(385, 248);
+            this.pictureBox1.Size = new System.Drawing.Size(389, 326);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Form3
             // 
@@ -58,7 +60,6 @@
             this.Controls.Add(this.listBox1);
             this.Name = "Form3";
             this.Text = " ";
-            this.Load += new System.EventHandler(this.Form3_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

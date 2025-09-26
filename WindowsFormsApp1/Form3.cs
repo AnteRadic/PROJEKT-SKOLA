@@ -45,5 +45,10 @@ namespace WindowsFormsApp1
                 pictureBox1.Image = null;
             }
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
