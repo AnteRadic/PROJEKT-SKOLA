@@ -7,35 +7,20 @@ namespace WindowsFormsApp1
 {
     public partial class Form4 : Form
     {
-        private class Animal
-        {
-            public string Name { get; set; }
-            public string Vrsta { get; set; }
-            public string Status { get; set; }
-            public override string ToString() => $"{Name} ({Vrsta}, {Status})";
-        }
-
-        private List<Animal> animals = new List<Animal>
-        {
-            new Animal { Name = "Mau", Vrsta = "Pas", Status = "Dostupan" },
-            new Animal { Name = "Maza", Vrsta = "Mačka", Status = "Udomljen" },
-            new Animal { Name = "Bobi", Vrsta = "Pas", Status = "Dostupan" }
-        };
-
         public Form4()
         {
             InitializeComponent();
             comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
             button1.Click += Button1_Click;
             LoadComboBox();
-            LoadListBox(animals);
+            
+            AnimalRepository.Animals.Add(new Animal { Name = "Novi", Vrsta = "Pas", Status = "Dostupan" });
         }
 
         private void LoadComboBox()
         {
-     
-            var filters = animals.Select(a => a.Vrsta).Distinct()
-                .Concat(animals.Select(a => a.Status).Distinct())
+            var filters = AnimalRepository.Animals.Select(a => a.Vrsta).Distinct()
+                .Concat(AnimalRepository.Animals.Select(a => a.Status).Distinct())
                 .Distinct()
                 .ToList();
             filters.Insert(0, "Svi");
@@ -54,11 +39,11 @@ namespace WindowsFormsApp1
             string selected = comboBox1.SelectedItem.ToString();
             if (selected == "Svi")
             {
-                LoadListBox(animals);
+                LoadListBox(AnimalRepository.Animals);
             }
             else
             {
-                var filtered = animals.Where(a => a.Vrsta == selected || a.Status == selected);
+                var filtered = AnimalRepository.Animals.Where(a => a.Vrsta == selected || a.Status == selected);
                 LoadListBox(filtered);
             }
         }
@@ -66,6 +51,26 @@ namespace WindowsFormsApp1
         private void Button1_Click(object sender, EventArgs e)
         {
             comboBox1.SelectedIndex = 0; 
+        }
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        public void RefreshAnimals()
+        {
+            LoadComboBox();
+            LoadListBox(AnimalRepository.Animals);
+        }
+
+        public static void RefreshAllForm4Instances()
+        {
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f is Form4 form4)
+                    form4.RefreshAnimals();
+            }
         }
     }
 }

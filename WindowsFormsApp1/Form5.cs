@@ -75,5 +75,10 @@ namespace WindowsFormsApp1
                 MessageBoxIcon.Information
             );
         }
+
+        private void Form5_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

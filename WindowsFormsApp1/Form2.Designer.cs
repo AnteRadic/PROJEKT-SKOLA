@@ -81,7 +81,6 @@
             this.label1.Size = new System.Drawing.Size(24, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Ime";
-           
             // 
             // label2
             // 
@@ -207,7 +206,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(392, 27);
+            this.pictureBox1.Location = new System.Drawing.Point(273, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(338, 231);
             this.pictureBox1.TabIndex = 17;
@@ -248,6 +247,7 @@
             this.Controls.Add(this.textBox1);
             this.Name = "Form2";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

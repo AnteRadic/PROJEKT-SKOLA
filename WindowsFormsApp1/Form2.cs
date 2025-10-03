@@ -32,7 +32,8 @@ namespace WindowsFormsApp1
             bool kastriran = checkBox2.Checked;
             string napomena = textBox4.Text;
 
-           
+            
+
             MessageBox.Show(
                 $"Ime: {ime}\nVrsta: {vrsta}\nPasmina: {pasmina}\nSpol: {spol}\nDob: {dob}\nDatum dolaska: {datumDolaska.ToShortDateString()}\nCjepljen: {cjepljen}\nKastriran: {kastriran}\nNapomena: {napomena}",
                 "Podaci o životinji",
@@ -49,6 +50,9 @@ namespace WindowsFormsApp1
             }
         }
 
-      
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
