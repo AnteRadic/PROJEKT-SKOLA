@@ -1,17 +1,28 @@
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace WindowsFormsApp1
 {
     public static class AnimalRepository
     {
-        public static List<Animal> Animals { get; } = new List<Animal>();
+        // BindingList notifies bound controls when items are added/removed
+        public static BindingList<Animal> Animals { get; } = new BindingList<Animal>();
 
-        
+        // Optional event if forms want an explicit notification
+        public static event Action<Animal> AnimalAdded;
+
+        public static void Add(Animal a)
+        {
+            Animals.Add(a);
+            AnimalAdded?.Invoke(a);
+        }
+
         static AnimalRepository()
         {
-            Animals.Add(new Animal { Name = "Mau", Vrsta = "Pas", Status = "Dostupan" });
-            Animals.Add(new Animal { Name = "Maza", Vrsta = "Maèka", Status = "Udomljen" });
-            Animals.Add(new Animal { Name = "Bobi", Vrsta = "Pas", Status = "Dostupan" });
+            Add(new Animal { Name = "Mau", Vrsta = "Pas", Status = "Dostupan" });
+            Add(new Animal { Name = "Maza", Vrsta = "Maèka", Status = "Udomljen" });
+            Add(new Animal { Name = "Bobi", Vrsta = "Pas", Status = "Dostupan" });
         }
     }
 

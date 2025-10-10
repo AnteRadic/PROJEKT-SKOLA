@@ -12,7 +12,7 @@ namespace WindowsFormsApp1
 {
     public partial class Form3 : Form
     {
-        // Example data structure for animals
+        
         private class Animal
         {
             public string Ime { get; set; }
@@ -26,17 +26,14 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
 
-            // Example data - replace with your actual data source
-            animals.Add(new Animal { Ime = "Maza", Slika = Properties.Resources.maza }); 
-            animals.Add(new Animal { Ime = "Mau", Slika = Properties.Resources.mau });   
-
-            listBox1.DataSource = animals;
-            listBox1.SelectedIndexChanged += ListBox1_SelectedIndexChanged;
+            
+            listBoxAnimals.DataSource = AnimalRepository.Animals;
+            listBoxAnimals.DisplayMember = "Name";
         }
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedItem is Animal selectedAnimal)
+            if (listBoxAnimals.SelectedItem is Animal selectedAnimal)
             {
                 pictureBox1.Image = selectedAnimal.Slika;
             }

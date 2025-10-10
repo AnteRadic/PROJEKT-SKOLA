@@ -12,16 +12,21 @@ namespace WindowsFormsApp1
 {
     public partial class Form2 : Form
     {
+        private System.Windows.Forms.ListBox listBoxAnimals;
+
         public Form2()
         {
             InitializeComponent();
             button1.Click += Button1_Click;
             pictureBox1.Click += PictureBox1_Click;
+
+           
+            listBoxAnimals.DataSource = AnimalRepository.Animals;
+            listBoxAnimals.DisplayMember = "Name";
         }
 
         private void Button1_Click(object sender, EventArgs e)
         {
-         
             string ime = textBox3.Text;
             string vrsta = textBox2.Text;
             string pasmina = textBox1.Text;
@@ -33,6 +38,18 @@ namespace WindowsFormsApp1
             string napomena = textBox4.Text;
 
             
+            var a = new Animal
+            {
+                Name = ime,
+                Vrsta = vrsta,
+                
+                Status = string.IsNullOrWhiteSpace(napomena) ? "Dostupan" : napomena
+            };
+
+            AnimalRepository.Add(a);
+
+           
+            listBoxAnimals.SelectedItem = a;
 
             MessageBox.Show(
                 $"Ime: {ime}\nVrsta: {vrsta}\nPasmina: {pasmina}\nSpol: {spol}\nDob: {dob}\nDatum dolaska: {datumDolaska.ToShortDateString()}\nCjepljen: {cjepljen}\nKastriran: {kastriran}\nNapomena: {napomena}",
@@ -52,7 +69,20 @@ namespace WindowsFormsApp1
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            
+            AnimalRepository.AnimalAdded += OnAnimalAdded;
+        }
 
+        private void OnAnimalAdded(Animal a)
+        {
+          
+            listBoxAnimals.SelectedItem = a;
+        }
+
+        protected override void OnFormClosed(FormClosedEventArgs e)
+        {
+            AnimalRepository.AnimalAdded -= OnAnimalAdded;
+            base.OnFormClosed(e);
         }
     }
 }

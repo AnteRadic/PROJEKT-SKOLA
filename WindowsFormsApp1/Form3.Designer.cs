@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxAnimals = new System.Windows.Forms.ListBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // listBox1
+            // listBoxAnimals
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(281, 344);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(264, 108);
-            this.listBox1.TabIndex = 0;
+            this.listBoxAnimals.FormattingEnabled = true;
+            this.listBoxAnimals.Location = new System.Drawing.Point(281, 344);
+            this.listBoxAnimals.Name = "listBoxAnimals";
+            this.listBoxAnimals.Size = new System.Drawing.Size(264, 108);
+            this.listBoxAnimals.TabIndex = 0;
             // 
             // pictureBox1
             // 
@@ -57,7 +57,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxAnimals);
             this.Name = "Form3";
             this.Text = " ";
             this.Load += new System.EventHandler(this.Form3_Load);
@@ -68,7 +68,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxAnimals;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

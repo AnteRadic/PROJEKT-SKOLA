@@ -10,30 +10,28 @@ namespace WindowsFormsApp1
         {
             public string Name { get; set; }
             public string Vrsta { get; set; }
-            public string Pasmina { get; set; }
-            public int Dob { get; set; }
+            public string Status { get; set; }
             public override string ToString() => Name;
         }
 
-        private List<Animal> animals = new List<Animal>
+        private static class AnimalRepository
         {
-            new Animal { Name = "Mau", Vrsta = "Pas", Pasmina = "Mješanac", Dob = 3 },
-            new Animal { Name = "Maza", Vrsta = "Mačka", Pasmina = "Perzijska", Dob = 2 }
-        };
+            public static List<Animal> Animals { get; } = new List<Animal>
+            {
+                new Animal { Name = "Mau", Vrsta = "Pas", Status = "Dostupan" },
+                new Animal { Name = "Maza", Vrsta = "Mačka", Status = "Dostupan" }
+            };
+        }
 
         public Form5()
         {
             InitializeComponent();
             listBox1.SelectedIndexChanged += ListBox1_SelectedIndexChanged;
             button1.Click += Button1_Click;
-            LoadAnimals();
-        }
 
-        private void LoadAnimals()
-        {
-            listBox1.Items.Clear();
-            foreach (var animal in animals)
-                listBox1.Items.Add(animal);
+           
+            listBox1.DataSource = AnimalRepository.Animals;
+            listBox1.DisplayMember = "Name";
         }
 
         private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -41,9 +39,10 @@ namespace WindowsFormsApp1
             if (listBox1.SelectedItem is Animal selectedAnimal)
             {
                 textBox1.Text = selectedAnimal.Name;
-                textBox2.Text = selectedAnimal.Dob.ToString();
                 textBox3.Text = selectedAnimal.Vrsta;
-                textBox4.Text = selectedAnimal.Pasmina;
+                
+                textBox2.Text = "";
+                textBox4.Text = "";
             }
             else
             {
@@ -56,29 +55,38 @@ namespace WindowsFormsApp1
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            string ime = textBox1.Text;
-            string dob = textBox2.Text;
-            string vrsta = textBox3.Text;
-            string pasmina = textBox4.Text;
-            string imeUdomitelja = textBox7.Text;
-            string prezimeUdomitelja = textBox6.Text;
-            string kontakt = textBox5.Text;
-            DateTime datumUdomljavanja = dateTimePicker1.Value;
+            
+            if (listBox1.SelectedItem is Animal selectedAnimal)
+            {
+                string imeUdomitelja = textBox7.Text;
+                string prezimeUdomitelja = textBox6.Text;
+                string kontakt = textBox5.Text;
+                DateTime datumUdomljavanja = dateTimePicker1.Value;
 
-            MessageBox.Show(
-                $"Životinja: {ime} ({vrsta}, {pasmina}, {dob} god.)\n" +
-                $"Udomitelj: {imeUdomitelja} {prezimeUdomitelja}\n" +
-                $"Kontakt: {kontakt}\n" +
-                $"Datum udomljavanja: {datumUdomljavanja.ToShortDateString()}",
-                "Potvrda udomljavanja",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information
-            );
+                selectedAnimal.Status = "Udomljen";
+
+              
+                Form4.RefreshAllForm4Instances();
+
+                MessageBox.Show(
+                    $"Životinja: {selectedAnimal.Name} ({selectedAnimal.Vrsta})\n" +
+                    $"Udomitelj: {imeUdomitelja} {prezimeUdomitelja}\n" +
+                    $"Kontakt: {kontakt}\n" +
+                    $"Datum udomljavanja: {datumUdomljavanja.ToShortDateString()}",
+                    "Potvrda udomljavanja",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            else
+            {
+                MessageBox.Show("Nije odabrana životinja.", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void Form5_Load(object sender, EventArgs e)
         {
 
-        }
+            }
     }
 }
